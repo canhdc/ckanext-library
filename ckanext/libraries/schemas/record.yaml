@@ -1,0 +1,126 @@
+scheming_version: 1
+dataset_type: record
+
+about:
+about_url:
+form_languages:
+- en
+- fr
+
+dataset_fields:
+- field_name: url
+  label:
+    en: URL
+  required: true
+  display_snippet: link.html
+
+- field_name: language
+  label:
+    en: Language
+  required: true
+  display_snippet: select.html
+  form_snippet: select.html
+  choices:
+  - label:
+      en: English
+    value: en
+  - label:
+      en: French
+    value: fr
+  - label:
+      en: N\A
+    value: NA
+
+- field_name: author
+  label:
+    en: Author
+  required: true
+  display_snippet: text.html
+  form_snippet: text.html
+  help_text:
+      en: 'The author of this dataset.'
+
+- field_name: publisher
+  label:
+    en: Publisher
+  required: true
+  display_snippet: text.html
+  form_snippet: text.html
+  help_text:
+      en: 'The publisher of this dataset.'
+
+- field_name: province_located_in
+  label:
+    en: Province
+  form_snippet: text.html
+  display_snippet: text.html
+  help_text:
+      en: 'The province this dataset is located in.'
+
+- field_name: format
+  label:
+    en: Format
+  required: true
+  form_snippet: select.html
+  display_snippet: select.html
+  validators: scheming_choices
+  help_text:
+      en: 'The format of this dataset.'
+  choices:
+  - label:
+      en: Text
+    value: text
+  - label:
+      en: Image
+    value: image
+  - label:
+      en: PDF
+    value: pdf
+  - label:
+      en: Audio
+    value: audio
+
+- field_name: location
+  label:
+      en: Location
+  form_snippet: text.html
+  display_snippet: text.html
+  help_text:
+      en: "A free-form description of the dataset location."
+
+- field_name: mikan
+  label:
+      en: MIKAN Number
+  form_snippet: text.html
+  display_snippet: text.html
+  help_text:
+      en: "The MIKAN catalog number."
+
+- field_name: keywords
+  label:
+    en: Keywords
+    fr: Mots clés
+  fluent_form_label:
+    en: "Keywords (English)"
+    fr: "Mots clés (anglais)"
+
+- field_name: ca_rights
+  label:
+      en: Rights
+      fr: Rights
+  form_snippet: text.html
+  display_snippet: text.html
+  help_text:
+      en: "Usage rights for this dataset."
+
+  fluent_help_text:
+      en: Commonly used words or phrases which describe the dataset, in French. (Separate multiple entries by commas)
+      fr: Mots ou phrases couramment utilisés qui décrivent le jeu de données, en français. (Séparer les mots ou phrases par une virgule)
+  form_snippet: fluent_tags.html
+  display_snippet: fluent_tags.html
+  error_snippet: fluent_text.html
+  validators: fluent_tags
+  output_validators: fluent_tags_output
+  form_attrs:
+    data-module: autocomplete
+    data-module-tags: ""

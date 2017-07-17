@@ -1,0 +1,5 @@
+<ul>
+  {% for value in data[field.field_name] %}
+   <li>{{ value['name'] }}</li>
+  {%- endfor -%}
+</ul>

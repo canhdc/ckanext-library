@@ -1,0 +1,14 @@
+---
+postgresql_users:
+  - name: ckan
+    pass: "{{ vault_pg_ckan_pass }}"
+    encrypted: yes
+
+postgresql_databases:
+  - name: ckan
+    owner: ckan
+
+postgresql_user_privileges:
+  - name: ckan
+    db: ckan
+    priv: "ALL"

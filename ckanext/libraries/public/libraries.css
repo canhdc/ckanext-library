@@ -1,0 +1,10 @@
+li.dataset-item {
+    clear: left;
+    overflow: auto;
+}
+
+.dataset-list-thumbnail {
+    clear: left;
+    float: left;
+    padding-right: 20px;
+}

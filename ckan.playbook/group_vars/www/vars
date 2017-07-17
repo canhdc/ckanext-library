@@ -1,0 +1,12 @@
+---
+nginx_remove_default_vhost: true
+nginx_vhosts:
+    - listen: "80 default_server"
+      server_name: "{{ inventory_hostname }}"
+      extra_parameters: |
+        location / {
+            fastcgi_pass unix:/var/run/fcgi_ckan
+            include fastcgi_params;
+            fastcgi_pass_header Authorization;
+            fastcgi_intercept_errors off;
+        }

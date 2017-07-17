@@ -1,0 +1,88 @@
+---
+- hosts: pg
+  become: yes
+  roles:
+      - ANXS.postgresql
+
+- hosts: solr
+  become: yes
+  roles:
+      - role: geerlingguy.java
+        when: "ansible_os_family == 'RedHat'"
+        java_packages:
+            - java-1.8.0-openjdk
+      - geerlingguy.solr
+  tasks:
+      - name: install dependencies
+        yum: pkg={{item}} state=installed
+        with_items:
+            - git-core
+        when: "ansible_os_family == 'RedHat'"
+
+      - name: getting ckan
+        git:
+            repo: 'https://github.com/ckan/ckan.git'
+            version: 'release-v2.6-latest'
+            dest: /root/ckan
+
+      - name: stopping solr
+        service:
+            name: solr
+            state: stopped
+
+      - name: updating solr schema
+        file:
+            src: "/root/ckan/ckan/config/solr/schema.xml"
+            dest: "/var/solr/data/ckan/conf/schema.xml"
+            owner: "{{ solr_user }}"
+            state: link
+
+      - name: removing managed schema
+        file:
+            path: "/var/solr/data/ckan/conf/managed-schema"
+            state: absent
+
+      - name: starting solr
+        service:
+            name: solr
+            state: started
+
+
+- hosts: www
+  become: yes
+  roles:
+      - geerlingguy.nginx
+  tasks:
+      - name: enable epel repository
+        yum:
+            pkg: epel-release
+            state: installed
+        when: "ansible_os_family == 'RedHat'"
+
+      - name: install core dependencies
+        yum: pkg={{item}} state=installed
+        with_items:
+            - git-core
+            - postgresql-devel
+            - python2
+            - python-pip
+            - python-virtualenv
+            - redis
+            - "@Development tools"
+        when: "ansible_os_family == 'RedHat'"
+
+      - name: getting ckan
+        git:
+            repo: 'https://github.com/ckan/ckan.git'
+            version: 'release-v2.6-latest'
+            dest: /root/ckan
+
+      - name: install ckan dependencies
+        pip:
+            requirements: requirements.txt
+            chdir: /root/ckan
+
+      - name: install ckan dev dependencies
+        pip:
+            requirements: dev-requirements.txt
+            chdir: /root/ckan
