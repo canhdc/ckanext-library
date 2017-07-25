@@ -1,0 +1,103 @@
+scheming_version: 1
+dataset_type: item
+
+about:
+about_url:
+form_languages:
+- en
+- fr
+
+dataset_fields:
+- field_name: url
+  label:
+    en: URL
+    fr: URL
+  required: true
+
+- field_name: language
+  label:
+    en: Language
+  required: true
+  display_snippet: select.html
+  form_snippet: select.html
+  choices:
+  - label:
+      en: English
+    value: en
+  - label:
+      en: French
+    value: fr
+  - label:
+      en: N/A
+    value: NA
+
+- field_name: identifier
+  label:
+      en: Identifier
+      fr: Identifiant
+  required: true
+
+- field_name: level
+  label:
+      en: Level
+      fr: Portée
+  required: true
+
+- field_name: title
+  label:
+      en: Title
+      fr: Titre
+  required: true
+
+- field_name: date
+  label:
+      en: Date Issued
+
+- field_name: start_date
+  label:
+      en: Start Date
+
+- field_name: end_date 
+  label:
+      en: End Date
+
+- field_name: extent
+  label:
+      en: Extent
+      fr: Étendue
+
+- field_name: notes_translated
+  label:
+      en: Note
+      fr: Note
+  required: false
+  form_snippet: fluent_markdown.html
+  display_snippet: fluent_markdown.html
+  error_snippet: fluent_text.html
+  validators: fluent_text
+  output_validators: fluent_core_translated_output
+
+- field_name: access_condition_code
+  label:
+      en: Access Condition Code
+
+- field_name: rights
+  label:
+      en: Rights
+      fr: Droits
+
+- field_name: subjects
+  label:
+      en: Subjects
+      fr: Subjects
+  fluent_help_text:
+      en: Commonly used words or phrases which describe the dataset. (Separate multiple entries by commas)
+      fr: Mots ou phrases couramment utilisés qui décrivent le jeu de données. (Séparer les mots ou phrases par une virgule)
+  form_snippet: fluent_tags.html
+  display_snippet: fluent_tags.html
+  error_snippet: fluent_text.html
+  validators: fluent_tags
+  output_validators: fluent_tags_output
+  form_attrs:
+    data-module: autocomplete
+    data-module-tags: ""

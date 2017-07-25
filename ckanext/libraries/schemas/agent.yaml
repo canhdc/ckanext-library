@@ -1,0 +1,27 @@
+scheming_version: 1
+dataset_type: agent
+
+about:
+about_url:
+form_languages:
+- en
+- fr
+
+dataset_fields:
+- field_name: identifier
+  label:
+      en: Identifier
+      fr: Identifiant
+  required: true
+
+- field_name: Name
+  label:
+      en: Name
+      fr: Name
+  required: true
+
+- field_name: notes_translated
+  label:
+      en: Note
+      fr: Note
+  required: false
