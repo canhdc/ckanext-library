@@ -11,21 +11,25 @@ dataset_fields:
 - field_name: url
   label:
     en: URL
+    fr: URL
   required: true
   display_snippet: link.html
 
 - field_name: language
   label:
     en: Language
+    fr: Langue
   required: true
   display_snippet: select.html
   form_snippet: select.html
   choices:
   - label:
       en: English
+      fr: Anglais
     value: en
   - label:
       en: French
+      fr: Français
     value: fr
   - label:
       en: N\A
@@ -34,67 +38,83 @@ dataset_fields:
 - field_name: author
   label:
     en: Author
+    fr: Auteur
   required: true
   display_snippet: text.html
   form_snippet: text.html
   help_text:
       en: 'The author of this dataset.'
+      fr: "L'auteur de cet ensemble de données."
 
 - field_name: publisher
   label:
     en: Publisher
+    fr: Éditeur
   required: true
   display_snippet: text.html
   form_snippet: text.html
   help_text:
       en: 'The publisher of this dataset.'
+      fr: "L'éditeur de cet ensemble de données."
 
 - field_name: province_located_in
   label:
     en: Province
+    fr: Province
   form_snippet: text.html
   display_snippet: text.html
   help_text:
       en: 'The province this dataset is located in.'
+      fr: 'La province où est situé cet ensemble de données.'
 
 - field_name: format
   label:
     en: Format
+    fr: Format
   required: true
   form_snippet: select.html
   display_snippet: select.html
   validators: scheming_choices
   help_text:
       en: 'The format of this dataset.'
+      fr: 'Le format de cet ensemble de données.'
   choices:
   - label:
       en: Text
+      fr: Texte
     value: text
   - label:
       en: Image
+      fr: Image
     value: image
   - label:
       en: PDF
+      fr: PDF
     value: pdf
   - label:
       en: Audio
+      fr: Audio
     value: audio
 
 - field_name: location
   label:
       en: Location
+      fr: Emplacement
   form_snippet: text.html
   display_snippet: text.html
   help_text:
       en: "A free-form description of the dataset location."
+      fr: "Une description de forme libre de l'emplacement de l'ensemble de données."
 
 - field_name: mikan
   label:
       en: MIKAN Number
+      fr: Numéro MIKAN
   form_snippet: text.html
   display_snippet: text.html
   help_text:
       en: "The MIKAN catalog number."
+      fr: "Le numéro de catalogue MIKAN"
 
 - field_name: keywords
   label:
@@ -107,11 +127,12 @@ dataset_fields:
 - field_name: ca_rights
   label:
       en: Rights
-      fr: Rights
+      fr: Droits
   form_snippet: text.html
   display_snippet: text.html
   help_text:
       en: "Usage rights for this dataset."
+      fr: "Les droits d'utilisation pour cet ensemble de données."
 
   fluent_help_text:
       en: Commonly used words or phrases which describe the dataset, in French. (Separate multiple entries by commas)
