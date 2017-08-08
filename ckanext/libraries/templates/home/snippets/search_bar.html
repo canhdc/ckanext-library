@@ -3,6 +3,7 @@ Display a searchbar to search in datasets
 
 header - if the header is to be shown or not
 #}
+
 {% set placeholder = (_('Search data on ')+app_globals.site_title+_('')) %}
 <!-- placeholder = {{ placeholder }} -->
 {% set num = h.datasets()|length %}
