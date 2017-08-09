@@ -1,0 +1,2 @@
+ckanext-pages==0.1.0
+beautifulsoup4==4.6.0

@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+<!-- Block styles start -->
+{% block styles %}
+    {{ super() }}
+
+    {% resource 'canada_libraries_theme/canada_libraries_home.css' %}
+
+{% endblock %}
+<!-- Block styles end -->
+
+<!-- Block content start -->
+{% block content %}
+    {% snippet 'home/snippets/search_bar.html' %}
+
+    {% snippet  'home/snippets/blog_list.html' %}
+
+    {{ super() }}
+{% endblock %}
+<!-- Block content end -->
