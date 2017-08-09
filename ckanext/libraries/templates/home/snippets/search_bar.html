@@ -1,0 +1,49 @@
+{#
+Display a searchbar to search in datasets
+
+header - if the header is to be shown or not
+#}
+
+{% set placeholder = (_('Search data on ')+app_globals.site_title+_('')) %}
+<!-- placeholder = {{ placeholder }} -->
+{% set num = h.datasets()|length %}
+<!-- num (number of packages)= {{ num }} -->
+{% set header = header if header is defined else True %}
+<!-- header = {{ header }} -->
+{% set datasets_url = h.url_for(controller='package', action='search') %}
+<!-- datasets_url = {{ datasets_url }} -->
+<!-- Block search_bar start -->
+{% block search_bar %}
+    <div class="module module-search module-narrow module-shallow box canhdc-module canhdc-search-box">
+        <form class="module-content search-form" method="get"
+              action="{% url_for controller='package', action='search' %}">
+            <div>
+                {% if header %}
+                    {% block header %}
+                        <h3 class="canhdc_search">
+                            {% trans %}Get started{% endtrans %}
+                        </h3>
+                        <p class="canhdc_search">
+                            {% trans count=num %}
+                                Search over {{ num }} dataset
+                                {% pluralize %}
+                                Search over <a href="{{ datasets_url }}">{{ num }} datasets</a>
+                            {% endtrans %}
+                        </p>
+                    {% endblock %}
+                {% endif %}
+                {% block bar %}
+                    <div class="search-input control-group search-giant">
+                        <input id="field-main-search" type="text" class="search" name="q" value="" autocomplete="off"
+                               placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}"/>
+                        <button type="submit">
+                            <i class="fa fa-search search-bar-button"></i>
+                            <span>{% trans %}Search{% endtrans %}</span>
+                        </button>
+                    </div>
+                {% endblock %}
+            </div>
+        </form>
+    </div>
+{% endblock %}
+<!-- Block search_bar end -->

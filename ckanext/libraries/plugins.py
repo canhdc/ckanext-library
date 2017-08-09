@@ -12,15 +12,24 @@ def _dumps(o):
     return json.dumps(o)
 
 
+def get_datasets():
+    datasets = p.toolkit.get_action('package_list')(
+        data_dict={}
+    )
+    return datasets
+
+
 class LibrariesPlugin(p.SingletonPlugin):
     p.implements(p.IConfigurer)
     p.implements(p.IValidators)
     p.implements(p.IFacets)
     p.implements(p.IPackageController)
+    p.implements(p.ITemplateHelpers)
 
     def update_config(self, config):
         p.toolkit.add_template_directory(config, 'templates')
         p.toolkit.add_public_directory(config, 'public')
+        p.toolkit.add_resource('fanstatic', 'canada_libraries_theme')
 
     def get_validators(self):
         return {
@@ -88,3 +97,8 @@ class LibrariesPlugin(p.SingletonPlugin):
 
     def before_search(self, search_params):
         return search_params
+
+    def get_helpers(self):
+        return {
+            'datasets': get_datasets,
+        }
