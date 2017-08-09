@@ -25,7 +25,6 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
     """
     Returns a shortened version of the ckanext-page content
     type specified, limited by a specific size
-    :param suffix: The suffix to be added if the string is truncated
     :param exclude: Entry to be excluded
     :param length: The maximum length of content allowed
     :param number: The maximum number of elements to be returned
@@ -66,9 +65,7 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
             # the result string could potentially be the origin string
             blog_entry['truncated'] = new_content[length - len(suffix):] != \
                                       (blog_entry['content'])[length - len(suffix):]
-            if blog_entry['truncated']:
-                blog_entry['content'] = new_content + suffix
-            
+            blog_entry['content'] = new_content + suffix
         else:
             blog_entry['truncated'] = False
 
