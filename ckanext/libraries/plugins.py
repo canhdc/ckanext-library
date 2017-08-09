@@ -47,10 +47,8 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
     """
     blog_list = get_pages(page_type='blog', order=True)
 
-    entries = []
-
-    for blog_entry in blog_list:
-        if len(entries) >= number:
+    for i, blog_entry in enumerate(blog_list):
+        if i >= number:
             break
         if exclude and blog_entry == exclude:
             continue
@@ -81,9 +79,7 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
         else:
             blog_entry['truncated'] = False
 
-        entries.append(blog_entry)
-
-    return entries
+        yield blog_entry
 
 
 class LibrariesPlugin(p.SingletonPlugin):
