@@ -6,7 +6,7 @@ import ckan.plugins as p
 from ckan.lib.navl.dictization_functions import Missing
 
 from bs4 import BeautifulSoup
-from datetime import datetime
+
 
 def _dumps(o):
     if isinstance(o, Missing):
@@ -19,16 +19,6 @@ def get_datasets():
         data_dict={}
     )
     return datasets
-
-
-def get_pages(page_type=None, private=False):
-    pages = p.toolkit.get_action('ckanext_pages_list')(
-        data_dict={
-            'page_type': page_type,
-            'private': private,
-        }
-    )
-    return pages
 
 
 def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...'):
@@ -59,9 +49,6 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
         if exclude and blog_entry == exclude:
             continue
         # else the blog_entry is fetched and added to the list
-        blog_entry['publish_date'] = datetime\
-            .strptime(blog_entry['publish_date'], '%Y-%m-%dT%H:%M:%S')\
-            .strftime('%B %-d, %Y')
         # the contents can be html, so it needs to be converted to pure text
         soup = BeautifulSoup(blog_entry['content'])
         # removes titles, subtitles and lists from the text
@@ -81,7 +68,7 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
                                       (blog_entry['content'])[length - len(suffix):]
             if blog_entry['truncated']:
                 blog_entry['content'] = new_content + suffix
-
+            
         else:
             blog_entry['truncated'] = False
 
@@ -171,7 +158,5 @@ class LibrariesPlugin(p.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'canada_libraries_recent_short_blog': get_recent_short_blog_posts,
             'datasets': get_datasets,
-            'pages': get_pages,
         }
