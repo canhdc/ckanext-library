@@ -5,34 +5,39 @@ Uses the blog_short_item.html script to render individual items
 number - the number of blog posts to show
 length - the maximum length in characters of a blog post preview
 #}
-{% set number = number if number is defined else 10 %}
-<!-- number = {{ number }} -->
-{% set length = length if length is defined else 250 %}
-<!-- length = {{ length }} -->
-{% set url = h.url_for('blog_index') %}
-<!-- url = {{ url }} -->
-<!-- Block new_blog start   -->
-{% block new_blog %}
-    <div class="canhdc-blog-wrapper">
-        <div class="canhdc-blog-title-wrapper">
-            <h2 class="canhdc-blog-title">{% trans %}Updates{% endtrans %}</h2>
-        </div>
 
-        <ul class="canhdc-blog">
-            {% for blog_article in h.canada_libraries_recent_short_blog(length=length, number=number) %}
-                {% snippet 'home/snippets/blog_short_item.html', blog=blog_article %}
-            {% endfor %}
-        </ul>
-        {% if (h.pages(page_type='blog'))|length > number %}
-            <!-- Block all_blog start -->
-            {% block all_blog %}
-                <a href="{{ url }}">
-                    {% trans %}More entries{% endtrans %}
-                </a>
-            {% endblock %}
-            <!-- Block all_blog end -->
-        {% endif %}
+{% if h.pages(page_type='blog')|length !=0 %}
+  {% set number = number if number is defined else 10 %}
+  <!-- number = {{ number }} -->
+  {% set length = length if length is defined else 250 %}
+  <!-- length = {{ length }} -->
+  {% set url = h.url_for('blog_index') %}
+  <!-- url = {{ url }} -->
+  <!-- Block new_blog start   -->
+  {% block new_blog %}
+    <div class="canhdc-blog-wrapper">
+      <div class="canhdc-blog-title-wrapper">
+        <h2 class="canhdc-blog-title">{% trans %}Updates{% endtrans %}</h2>
+      </div>
+
+      <ul class="canhdc-blog">
+        {% for blog_article in h.canada_libraries_recent_short_blog(length=length, number=number) %}
+          {% snippet 'home/snippets/blog_short_item.html', blog=blog_article %}
+        {% endfor %}
+      </ul>
+      {% if (h.pages(page_type='blog'))|length > number %}
+        <!-- Block all_blog start -->
+        {% block all_blog %}
+          <a href="{{ url }}">
+            {% trans %}More entries{% endtrans %}
+          </a>
+        {% endblock %}
+        <!-- Block all_blog end -->
+      {% endif %}
     </div>
 
-{% endblock %}
-<!-- Block new_blog end   -->
+  {% endblock %}
+  <!-- Block new_blog end   -->
+{% else %}
+  <!-- There is no recent blog entries... -->
+{% endif %}
