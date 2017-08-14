@@ -33,7 +33,8 @@ def get_pages(page_type=None, private=False, order=None):
     return pages
 
 
-def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...'):
+def get_recent_short_blog_posts(number=10, exclude=None, length=250,
+                                suffix='...'):
     """
     Returns a shortened version of the ckanext-page content
     type specified, limited by a specific size
@@ -67,12 +68,15 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250, suffix='...
         if len(blog_entry['content']) > length:
             # truncates to the last word inside the length,
             # it shouldn't cut words
-            new_content = ' '.join((blog_entry['content'])[:length + 1 - len(suffix)]
-                                   .split(' ')[0:-1])
-            # since the previous operation is truncating the string to the right,
-            # the result string could potentially be the origin string
-            blog_entry['truncated'] = new_content[length - len(suffix):] != \
-                                      (blog_entry['content'])[length - len(suffix):]
+            new_content = ' '.join((
+                blog_entry['content'])[:length + 1 - len(suffix)]
+                .split(' ')[0:-1]
+            )
+            # since the previous operation is truncating the string to the
+            # right, the result string could potentially be the origin string
+            blog_entry['truncated'] = \
+                new_content[length - len(suffix):] != \
+                (blog_entry['content'])[length - len(suffix):]
             if blog_entry['truncated']:
                 blog_entry['content'] = new_content + suffix
 
