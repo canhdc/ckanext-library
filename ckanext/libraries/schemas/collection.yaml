@@ -1,0 +1,62 @@
+scheming_version: 1
+dataset_type: collection
+
+about:
+about_url:
+form_languages:
+- en
+- fr
+
+dataset_fields:
+- field_name: name
+  label:
+      en: Identifier
+      fr: Identifiant
+  required: true
+
+- field_name: title
+  label:
+      en: Title
+      fr: Title
+  required: true
+
+- field_name: level
+  label:
+      en: Level
+      fr: Level
+
+- field_name: extent
+  form_snippet: fluent_markdown.html
+  display_snippet: fluent_markdown.html
+  error_snippet: fluent_text.html
+  validators: fluent_text
+  output_validators: fluent_text_output
+  label:
+      en: Extent
+      fr: Extent
+
+- field_name: language
+  label:
+      en: Language
+      fr: Language
+
+- field_name: rights
+  form_snippet: fluent_markdown.html
+  display_snippet: fluent_text.html
+  error_snippet: fluent_text.html
+  validators: fluent_text
+  output_validators: fluent_text_output
+  label:
+      en: Rights
+      fr: Rights
+
+- field_name: notes_translated
+  label:
+      en: Description
+      fr: Description
+  required: false
+  form_snippet: fluent_markdown.html
+  display_snippet: null
+  error_snippet: fluent_text.html
+  validators: fluent_text
+  output_validators: fluent_core_translated_output

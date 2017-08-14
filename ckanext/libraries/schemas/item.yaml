@@ -68,8 +68,8 @@ dataset_fields:
 
 - field_name: notes_translated
   label:
-      en: Note
-      fr: Note
+      en: Description
+      fr: Description
   required: false
   form_snippet: fluent_markdown.html
   display_snippet: fluent_markdown.html
@@ -79,7 +79,7 @@ dataset_fields:
 
 - field_name: access_condition_code
   label:
-      en: Access Condition Code
+      en: Access Condition
 
 - field_name: rights
   label:

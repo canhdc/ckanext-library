@@ -8,20 +8,24 @@ form_languages:
 - fr
 
 dataset_fields:
-- field_name: identifier
+- field_name: title
   label:
-      en: Identifier
-      fr: Identifiant
+      en: Title
+      fr: Title
   required: true
 
-- field_name: Name
+- field_name: label
   label:
-      en: Name
-      fr: Name
-  required: true
+      en: Label
+      fr: Label
 
 - field_name: notes_translated
   label:
-      en: Note
-      fr: Note
+      en: Description
+      fr: Description
   required: false
+  form_snippet: fluent_markdown.html
+  display_snippet: null
+  error_snippet: fluent_text.html
+  validators: fluent_text
+  output_validators: fluent_core_translated_output
