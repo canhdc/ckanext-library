@@ -1,0 +1,52 @@
+.canhdc_search {
+    text-align: center;
+}
+
+.canhdc-blog-wrapper {
+    padding: 2.5% 10% 2.5%;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.canhdc-blog-time {
+    opacity: 0.5;
+    margin: 0;
+}
+
+.canhdc-blog-item {
+    display: block;
+    margin: 0 auto;
+    float: none;
+    margin: 2.5% 0% 2.5%;
+    border-bottom: 1px solid #cccccc;
+}
+
+.canhdc-blog-title-wrapper {
+    border-bottom: 3px solid #cccccc;
+    width: 100%;
+}
+
+.menu-datum {
+    background-color: #dfdfdf;
+}
+
+.search-bar-button {
+    vertical-align: top;
+    margin-top: -1pc;
+}
+
+.canhdc-module {
+    padding: 1em 0;
+    box-sizing: border-box;
+}
+
+.canhdc-search-box {
+    border-bottom: 1px solid #cccccc;
+    text-transform: uppercase;
+    background-color: #efefef;
+}
+
+.canhdc-video{
+    width: inherit;
+    height: 320px;
+}

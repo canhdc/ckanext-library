@@ -17,18 +17,22 @@ dataset_fields:
 - field_name: language
   label:
     en: Language
+    fr: Langue
   required: true
   display_snippet: select.html
   form_snippet: select.html
   choices:
   - label:
       en: English
+      fr: Anglais
     value: en
   - label:
       en: French
+      fr: Français
     value: fr
   - label:
       en: N/A
+      fr: N/A
     value: NA
 
 - field_name: identifier
@@ -52,14 +56,17 @@ dataset_fields:
 - field_name: date
   label:
       en: Date Issued
+      fr: Date de délivrance
 
 - field_name: start_date
   label:
       en: Start Date
+      fr: Date de début
 
 - field_name: end_date 
   label:
       en: End Date
+      fr: Date de fin
 
 - field_name: extent
   label:
@@ -79,7 +86,8 @@ dataset_fields:
 
 - field_name: access_condition_code
   label:
-      en: Access Condition
+      en: Access Condition Code
+      fr: Code d'état d'accès
 
 - field_name: rights
   label:
