@@ -94,11 +94,6 @@ class LibrariesPlugin(p.SingletonPlugin):
         p.toolkit.add_public_directory(config, 'public')
         p.toolkit.add_resource('fanstatic', 'canada_libraries_theme')
 
-    def get_helpers(self):
-        return {
-            'from_json': json.loads
-        }
-
     def get_validators(self):
         return {
             'json_output': json.loads,
@@ -174,4 +169,5 @@ class LibrariesPlugin(p.SingletonPlugin):
             'canada_libraries_recent_short_blog': get_recent_short_blog_posts,
             'datasets': get_datasets,
             'pages': get_pages,
+            'from_json': json.loads
         }
