@@ -9,37 +9,37 @@ blog - A blog item
 <!-- Block item start -->
 {% block item %}
 
-    <li class="canhdc-blog-item">
-        <!-- Block inner_item start -->
-        {% block inner_item %}
-            <!-- Block title start -->
-            {% block title %}
-                <a href="{{ url }}">
-                    <h3>{{ blog.title }}</h3>
-                </a>
-            {% endblock %}
-            <!-- Block title end -->
-            <!-- Block time start -->
-            {% block time %}
-                <p class="canhdc-blog-time">{{ blog.publish_date }}</p>
-            {% endblock %}
-            <!-- Block time end -->
-            {# 'don't wana name it content to cause conflict #}
-            <!-- Block item_content start -->
-            {% block item_content %}
-                {% if blog.content!='' %}
-                    <p class="canhdc-blog-text">{{ blog.content }}
-                        {% if blog.truncated %}
-                            <br class="canhdc-blog-continue"/>
-                            <a href="{{ url }}" class="canhdc-blog-continue">Continued</a>
-                        {% endif %}
-                    </p>
-                {% endif %}
-            {% endblock %}
-            <!-- Block item_content end -->
-        {% endblock %}
-        <!-- Block inner_item end -->
-    </li>
+  <li class="canhdc-blog-item">
+    <!-- Block inner_item start -->
+    {% block inner_item %}
+      <!-- Block title start -->
+      {% block title %}
+        <a href="{{ url }}">
+          <h3>{{ blog.title }}</h3>
+        </a>
+      {% endblock %}
+      <!-- Block title end -->
+      <!-- Block time start -->
+      {% block time %}
+        <p class="canhdc-blog-time">{{ blog.publish_date }}</p>
+      {% endblock %}
+      <!-- Block time end -->
+      {# 'don't wana name it content to cause conflict #}
+      <!-- Block item_content start -->
+      {% block item_content %}
+        {% if blog.content!='' %}
+          <p class="canhdc-blog-text">{{ blog.content }}
+            {% if blog.truncated %}
+              <br class="canhdc-blog-continue"/>
+              <a href="{{ url }}" class="canhdc-blog-continue">Continued</a>
+            {% endif %}
+          </p>
+        {% endif %}
+      {% endblock %}
+      <!-- Block item_content end -->
+    {% endblock %}
+    <!-- Block inner_item end -->
+  </li>
 
 {% endblock %}
 <!-- Block item end -->
