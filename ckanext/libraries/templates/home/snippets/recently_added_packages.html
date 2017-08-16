@@ -1,0 +1,36 @@
+{% set limit = limit if limit is defined else 3 %}
+<!-- limit = {{ limit }} -->
+{% set offset = offset if offset is defined else 0 %}
+<!-- offset = {{ offset }} -->
+{% set dataset_url = h.url_for(controller='package', action='search', sort='metadata_modified desc') %}
+<!-- dataset_url = {{ dataset_url }} -->
+{% set packages = h.recently_changed_packages(limit=limit, offset=offset) %}
+
+{% block recently_added_packages %}
+  <section class="group-list module module-narrow module-shallow box">
+    {% block recently_added_packages_header %}
+      <header class="module-heading">
+        {% block title %}
+          <h3 class="media-heading">
+            <a href="{{ dataset_url }}">
+              {% trans %}Recently added{% endtrans %}
+            </a>
+          </h3>
+        {% endblock %}
+      </header>
+    {% endblock %}
+
+    {% block recently_added_packages_content %}
+      {% set list_class = list_class if list_class is defined else "unstyled dataset-list" %}
+      <!-- list_class = {{ list_class }} -->
+      {% set item_class = item_class if item_class is defined else "dataset-item module-content" %}
+      <!-- item_class = {{ item_class }} -->
+      {% set truncate = truncate if truncate is defined else 120 %}
+      <!-- truncate = {{ truncate }} -->
+
+      {% snippet 'snippets/package_list.html', packages=packages, list_class=list_class, item_class=item_class, truncate=truncate %}
+
+    {% endblock %}
+  </section>
+
+{% endblock %}
