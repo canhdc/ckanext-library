@@ -5,7 +5,6 @@
 .canhdc-blog-wrapper {
     padding: 2.5% 10% 2.5%;
     background-color: #f8f8f8;
-    border-radius: 5px;
 }
 
 .canhdc-blog-time {
@@ -44,6 +43,9 @@
     border-bottom: 1px solid #cccccc;
     text-transform: uppercase;
     background-color: #efefef;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
 }
 
 .canhdc-video{

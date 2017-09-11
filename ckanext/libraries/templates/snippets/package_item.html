@@ -7,7 +7,7 @@
         <div class="dataset-thumbnail">
           {% block thumbnail %}
           {% set thumbnail = h.thumbnail_url(package.id) %}
-          {% if  thumbnail %}
+          {% if thumbnail and thumbnail != "/image-icon.png" %}
               <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}">
                 <img class="dataset-list-thumbnail" src="{{ thumbnail }}" style="max-width: 140px;">
               </a>

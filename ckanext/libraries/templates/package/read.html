@@ -35,35 +35,43 @@
     </div>
   {% endif %}
 
-  {% if pkg.type == 'agent' %}
-    <h4>Collections</h4>
-    {% for rel in pkg.relationships_as_object %}
-    {% set b = h.from_json(rel.comment) %}
-      <div>
-        <a href="{{ h.url_for(controller='package', action='read', id=b.subject.name) }}">
-          <h5>
-            {{ b.subject.title }}
-          </h5>
-        </a>
-        <p>{{ b.subject.description.en|truncate }}</p>
-      </div>
-    {% endfor %}
+  {% if pkg.relationships_as_object or pkg.relationships_as_subject %}
+  <h3>{{ _('Related Datasets') }}</h3>
   {% endif %}
-
-  {% if pkg.type == 'collection' %}
-    <h4>Agents</h4>
-    <ul>
-    {% for rel in pkg.relationships_as_subject %}
-    {% set b = h.from_json(rel.comment) %}
-     <li>
-       <a href="{{ h.url_for(controller='package', action='read', id=b.object.name) }}">
-         {{ b.object.title }}
-       </a>
-     </li>
-    {% endfor %}
-    </ul>
-  {% endif %}
+  <ul class="lac-related-list">
+    {{ relationship(pkg.relationships_as_object) }}
+    {{ relationship(pkg.relationships_as_subject) }}
+  </ul>
+  <div style="clear: left;"></div>
 
   {# FIXME why is this here? seems wrong #}
   <span class="insert-comment-thread"></span>
 {% endblock %}
+
+{% macro relationship(rels) %}
+  {% for rel in rels %}
+    {% set b = h.from_json(rel.comment) %}
+    {% if rel.__extras.object_package_id == pkg['id']%}
+      {% set focus = b.subject %}
+    {% else %}
+      {% set focus = b.object %}
+    {% endif %}
+    <li class="lac-related">
+      <div class="lac-related-content">
+        <a href="{{ h.url_for(controller='package', action='read', id=focus.name) }}">
+          <h5>
+            {{ focus.title }}
+          </h5>
+        </a>
+        <div>
+          <em class="muted">{{ focus.label }}</em>
+        </div>
+        {% if focus.description.en %}
+        <p>{{ focus.description.en|truncate }}</p>
+        {% else %}
+        <em class="muted">No description available.</em>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+{% endmacro %}

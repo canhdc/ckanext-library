@@ -8,3 +8,40 @@ li.dataset-item {
     float: left;
     padding-right: 20px;
 }
+
+.lac-related-list {
+    list-style: none;
+    margin: 0;
+    clear: both;
+}
+
+.lac-related {
+    display: inline;
+    float: left;
+    width: 50%;
+}
+
+.lac-related-content {
+    margin: 4px;
+    padding: 8px;
+    background-color: #efefef;
+    height: 96px;
+    overflow: hidden;
+}
+
+.lac-related-content p {
+    margin: 0;
+    overflow: hidden;
+}
+
+.lac-related-content h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lac-related-content span {
+    margin-bottom: 8px;
+}

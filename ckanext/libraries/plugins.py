@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 import json
 
+from pylons import config
 import ckan.plugins as p
 from ckan.lib.navl.dictization_functions import Missing
-from pylons import config
+from ckan.common import request
 import ckan.lib.helpers as h
 
+import urllib
 from bs4 import BeautifulSoup
 from datetime import datetime
 import random
@@ -28,14 +30,17 @@ def recently_changed_packages(limit, offset):
 
     return [package['data'].get('package') or package['data'].get('dataset')
             for package in packages]
-  
+
+
 def dynamic_content():
-    dataset = lambda token, text:\
-        text.replace(token, '[%d](%s)' %
-                     (len(get_datasets()),
-                      h.url_for(controller='package', action='search')))
+    def _dataset(token, text):
+        return text.replace(token, '[%d](%s)' % (
+            len(get_datasets()),
+            h.url_for(controller='package', action='search'))
+        )
+
     return {
-        '[datasets#]': dataset,
+        '[datasets#]': _dataset,
     }
 
 
@@ -64,7 +69,6 @@ def render_markdown_with_dynamic_content(markdown):
 # placeholder
 def get_featured_package_ids():
     # right now there is no metadata allowing to find only the featured items
-    return ['testgroup', 'bird', 'corvus_corvix-1']
     return [
         'lac-4447345',
         'lac-4318720',
@@ -83,19 +87,25 @@ def get_random_image():
 
 
 def build_canada_libraries_lang_tab():
-    supported_languages = p.toolkit.aslist(config.get('ckanext'
-                                                      '.canada_libraries'
-                                                      '.supported_languages',
-                                                      True))
+    supported_languages = p.toolkit.aslist(
+        config.get(
+            'ckanext.canada_libraries.supported_languages',
+            ['en', 'fr']
+        )
+    )
 
     output = ' '
     for lang in supported_languages:
         if lang == h.lang():
             continue
-        link = h.url_for(h.current_url(), locale=lang)
+
+        current_url = urllib.unquote(request.environ['CKAN_CURRENT_URL'])
+        link = h.url_for(current_url, locale=lang)
         item = h.literal('<a href="%s">%s</a>' % (link, lang.upper()))
         output = output + h.literal('<li>') + item + h.literal('</li>')
+
     return output
+
 
 def get_datasets():
     datasets = p.toolkit.get_action('package_list')(
