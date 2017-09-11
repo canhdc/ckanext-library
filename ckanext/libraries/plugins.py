@@ -18,7 +18,17 @@ def _dumps(o):
     return json.dumps(o)
 
 
+def recently_changed_packages(limit, offset):
+    packages = p.toolkit.get_action('recently_changed_packages_activity_list')(
+        data_dict={
+            'offset': offset,
+            'limit': min(limit, len(get_datasets())),
+        }
+    )
 
+    return [package['data'].get('package') or package['data'].get('dataset')
+            for package in packages]
+  
 def dynamic_content():
     dataset = lambda token, text:\
         text.replace(token, '[%d](%s)' %
@@ -87,7 +97,6 @@ def build_canada_libraries_lang_tab():
         output = output + h.literal('<li>') + item + h.literal('</li>')
     return output
 
-
 def get_datasets():
     datasets = p.toolkit.get_action('package_list')(
         data_dict={}
@@ -127,8 +136,8 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250,
         if exclude and blog_entry == exclude:
             continue
         # else the blog_entry is fetched and added to the list
-        blog_entry['publish_date'] = datetime\
-            .strptime(blog_entry['publish_date'], '%Y-%m-%dT%H:%M:%S')\
+        blog_entry['publish_date'] = datetime \
+            .strptime(blog_entry['publish_date'], '%Y-%m-%dT%H:%M:%S') \
             .strftime('%B %-d, %Y')
         # the contents can be html, so it needs to be converted to pure text
         soup = BeautifulSoup(blog_entry['content'])
@@ -142,9 +151,10 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250,
             # truncates to the last word inside the length,
             # it shouldn't cut words
             new_content = ' '.join((
-                blog_entry['content'])[:length + 1 - len(suffix)]
-                .split(' ')[0:-1]
-            )
+                                       blog_entry['content'])[
+                                   :length + 1 - len(suffix)]
+                                   .split(' ')[0:-1]
+                                   )
             # since the previous operation is truncating the string to the
             # right, the result string could potentially be the origin string
             blog_entry['truncated'] = \
@@ -244,6 +254,7 @@ class LibrariesPlugin(p.SingletonPlugin):
     def get_helpers(self):
         return {
             'canada_libraries_recent_short_blog': get_recent_short_blog_posts,
+            'recently_changed_packages': recently_changed_packages,
             'canada_render_html_with_subs': render_html_with_dynamic_content,
             'canada_libraries_random_image': get_random_image,
             'lang_list': build_canada_libraries_lang_tab,
