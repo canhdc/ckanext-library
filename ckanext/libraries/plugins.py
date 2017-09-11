@@ -4,9 +4,12 @@ import json
 
 import ckan.plugins as p
 from ckan.lib.navl.dictization_functions import Missing
+from pylons import config
+import ckan.lib.helpers as h
 
 from bs4 import BeautifulSoup
 from datetime import datetime
+import random
 
 
 def _dumps(o):
@@ -25,7 +28,74 @@ def recently_changed_packages(limit, offset):
 
     return [package['data'].get('package') or package['data'].get('dataset')
             for package in packages]
+  
+def dynamic_content():
+    dataset = lambda token, text:\
+        text.replace(token, '[%d](%s)' %
+                     (len(get_datasets()),
+                      h.url_for(controller='package', action='search')))
+    return {
+        '[datasets#]': dataset,
+    }
 
+
+# if we ever were to change to a wysiwyg for the intro text
+def render_html_with_dynamic_content(html):
+    changes = dynamic_content()
+    for token in changes:
+        if token in html:
+            html = changes[token](token, html)
+    return html
+
+
+def render_markdown_with_dynamic_content(markdown):
+    # Honestly, there probably will never be any use of plain [dataset#]
+    # as a pure string, so for now I won't provide an escape for the sub
+    changes = dynamic_content()
+    for token in changes:
+        if token in markdown:
+            print 'found %s' % token
+            markdown = changes[token](token, markdown)
+    markdown = h.render_markdown(markdown)
+
+    return markdown
+
+
+# placeholder
+def get_featured_package_ids():
+    # right now there is no metadata allowing to find only the featured items
+    return ['testgroup', 'bird', 'corvus_corvix-1']
+    return [
+        'lac-4447345',
+        'lac-4318720',
+        'lac-4318716',
+        'lac-4309188',
+        'lac-4309169'
+    ]
+
+
+def get_random_image():
+    ids = get_featured_package_ids()
+    return p.toolkit.get_action('package_show')(
+        data_dict={
+            'id': random.choice(ids)
+         })
+
+
+def build_canada_libraries_lang_tab():
+    supported_languages = p.toolkit.aslist(config.get('ckanext'
+                                                      '.canada_libraries'
+                                                      '.supported_languages',
+                                                      True))
+
+    output = ' '
+    for lang in supported_languages:
+        if lang == h.lang():
+            continue
+        link = h.url_for(h.current_url(), locale=lang)
+        item = h.literal('<a href="%s">%s</a>' % (link, lang.upper()))
+        output = output + h.literal('<li>') + item + h.literal('</li>')
+    return output
 
 def get_datasets():
     datasets = p.toolkit.get_action('package_list')(
@@ -185,7 +255,12 @@ class LibrariesPlugin(p.SingletonPlugin):
         return {
             'canada_libraries_recent_short_blog': get_recent_short_blog_posts,
             'recently_changed_packages': recently_changed_packages,
+            'canada_render_html_with_subs': render_html_with_dynamic_content,
+            'canada_libraries_random_image': get_random_image,
+            'lang_list': build_canada_libraries_lang_tab,
+            'canada_render_markdown_with_subs':
+                render_markdown_with_dynamic_content,
             'datasets': get_datasets,
+            'from_json': json.loads,
             'pages': get_pages,
-            'from_json': json.loads
         }

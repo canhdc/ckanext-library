@@ -1,0 +1,60 @@
+{#
+Replaces the default promoted.html snippet
+
+image - optional - The image to be shown
+#}
+
+{% set intro = g.site_intro_text %}
+<!-- intro = {{ intro }} -->
+{% set num = h.datasets()|length %}
+<!-- num = {{ num }} -->
+{% set datasets_url = h.url_for(controller='package', action='search') %}
+<!-- datasets_url = {{ datasets_url }} -->
+{% set img = image if image is defined else h.canada_libraries_random_image() %}
+<!-- image = {{ img }} -->
+
+<div class="module-content box">
+  <header>
+    {% if intro %}
+      {{ h.canada_render_markdown_with_subs(intro) }}
+      <!-- Has rendered markdown -->
+
+    {% else %}
+      <h1 class="page-heading">{{ _("Welcome to CKAN") }}</h1>
+      <p>
+        {% trans %}This is a nice introductory paragraph about CKAN or the site
+          in general. We don't have any copy to go here yet but soon we will
+        {% endtrans %}
+      </p>
+    {% endif %}
+  </header>
+
+  <!-- Block home_image start -->
+  {% block home_image %}
+
+
+    <section class="featured media-overlay hidden-phone">
+      <h2 class="media-heading">{% block home_image_caption %}
+        {{ img.title }}{% endblock %}</h2>
+      <!-- Block home_image_content start -->
+      {% block home_image_content %}
+        <!-- Block thumbnail start -->
+        {% block thumbnail %}
+          {% set thumbnail = h.thumbnail_url(img.id) %}
+          <!-- thumbnail = {{ thumbnail }} -->
+          {% if thumbnail %}
+            {% set data_url = h.url_for(controller='package', action='read', id=img.name) %}
+            <!-- data_url = {{ data_url }} -->
+            <a class="media-image" href="{{ data_url }}">
+              <img src="{{ thumbnail }}" alt="{% block alt %}{% set alt = img.title + "\n" + img.notes %}{{ alt }}{% endblock %}"
+                   width="420"/>
+            </a>
+          {% endif %}
+        {% endblock %}
+        <!-- Block thumbnail end -->
+      {% endblock %}
+      <!-- Block home_image_content end -->
+    </section>
+  {% endblock %}
+  <!-- Block home_image end -->
+</div>
