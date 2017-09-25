@@ -4,19 +4,18 @@ Display a searchbar to search in datasets
 header - if the header is to be shown or not
 #}
 
-{% set placeholder = (_('Search data on ')+app_globals.site_title+_('')) %}
+{% set placeholder = (_('Search data on ') + app_globals.site_title) %}
 <!-- placeholder = {{ placeholder }} -->
 {% set num = h.datasets()|length %}
 <!-- num (number of packages)= {{ num }} -->
 {% set header = header if header is defined else True %}
 <!-- header = {{ header }} -->
-{% set datasets_url = h.url_for(controller='package', action='search') %}
+{% set datasets_url = h.url_for('item_search') %}
 <!-- datasets_url = {{ datasets_url }} -->
 <!-- Block search_bar start -->
 {% block search_bar %}
   <div class="module module-search module-narrow module-shallow box canhdc-module canhdc-search-box">
-    <form class="module-content search-form" method="get"
-          action="{% url_for controller='package', action='search' %}">
+    <form class="module-content search-form" method="get" action="{{ h.url_for('item_search') }}">
       <div>
         {% if header %}
           {% block header %}
@@ -25,9 +24,9 @@ header - if the header is to be shown or not
             </h3>
             <p class="canhdc_search">
               {% trans count=num %}
-                Search over {{ num }} dataset
+                Search over {{ num }} items
                 {% pluralize %}
-                Search over <a href="{{ datasets_url }}">{{ num }} datasets</a>
+                Search over <a href="{{ datasets_url }}">{{ num }} items</a>
               {% endtrans %}
             </p>
           {% endblock %}

@@ -24,5 +24,14 @@ setup(
     entry_points="""
     [ckan.plugins]
     canada_libraries=ckanext.libraries.plugins:LibrariesPlugin
+    [babel.extractors]
+    ckan = ckan.lib.extract:extract_ckan
     """,
+    message_extractors={
+        'ckanext': [
+            ('**.py', 'python', None),
+            ('**.js', 'javascript', None),
+            ('**/templates/**.html', 'ckan', None),
+        ],
+    }
 )

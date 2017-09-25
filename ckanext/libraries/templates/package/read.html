@@ -1,5 +1,13 @@
 {% ckan_extends %} 
 
+{% block content_primary_nav %}
+  {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+{% endblock %}
+
+{% block package_info %}
+{% endblock %}
+
 {% block package_description %}
   {% if pkg.private %}
     <span class="dataset-private label label-inverse pull-right">
@@ -43,6 +51,10 @@
     {{ relationship(pkg.relationships_as_subject) }}
   </ul>
   <div style="clear: left;"></div>
+
+  {% if pkg.spatial %}
+    {% snippet "spatial/snippets/dataset_map.html", extent=pkg['spatial'] %}
+  {% endif %}
 
   {# FIXME why is this here? seems wrong #}
   <span class="insert-comment-thread"></span>

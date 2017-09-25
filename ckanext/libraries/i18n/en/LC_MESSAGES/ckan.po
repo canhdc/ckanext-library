@@ -1,0 +1,316 @@
+# English translations for ckanext-libraries.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the ckanext-libraries
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-libraries 0.1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-09-25 01:55-0400\n"
+"PO-Revision-Date: 2017-09-25 01:56-0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+msgid "Order by"
+msgstr "Sort by"
+
+msgid ""
+" You can also access this registry using the %(api_link)s (see "
+"%(api_doc_link)s). "
+msgstr "You can also access these results using the %(api_link)s (see %(api_doc_link)s)."
+
+msgid "Name Ascending"
+msgstr "Title A-Z"
+
+msgid "Name Descending"
+msgstr "Title Z-A"
+
+msgid "Last Modified"
+msgstr "Most recently added"
+
+msgid "Activity Stream"
+msgstr "Item History"
+
+msgid "Social"
+msgstr "Share"
+
+######
+
+msgid "Datasets per page"
+msgstr "Items per page"
+
+msgid "{num} Dataset"
+msgid_plural "{num} Datasets"
+msgstr[0] "{num} Item"
+msgstr[1] "{num} Items"
+
+msgid "0 Datasets"
+msgstr "0 Items"
+
+msgid "Total number of Datasets"
+msgstr "Total number of Items"
+
+msgid "Total datasets"
+msgstr "Total items"
+
+msgid "Dataset Revisions per Week"
+msgstr "Dataset Revisions per Week"
+
+msgid "All dataset revisions"
+msgstr "All item revisions"
+
+msgid "New datasets"
+msgstr "New items"
+
+msgid "Top Rated Datasets"
+msgstr "Top Rated Items"
+
+msgid "Most Edited Datasets"
+msgstr "Most Edited Items"
+
+msgid "Dataset"
+msgstr "Dataset"
+
+msgid "No edited datasets"
+msgstr "No edited items"
+
+msgid "Number of datasets"
+msgstr "Number of items"
+
+msgid "Number of Datasets"
+msgstr "Number of Items"
+
+msgid "Users Creating Most Datasets"
+msgstr "Users Creating Most Items"
+
+msgid "Total Number of Datasets"
+msgstr "Total Number of Items"
+
+msgid "Dataset not found"
+msgstr "Dataset not found"
+
+msgid "Viewing datasets of type \"{package_type}\" is not supported ({file_!r})."
+msgstr "Viewing items of type \"{package_type}\" is not supported ({file_!r})."
+
+msgid "CKAN Dataset Revision History"
+msgstr "CKAN Dataset Revision History"
+
+msgid "Recent changes to CKAN Dataset: "
+msgstr "Recent changes to CKAN Dataset: "
+
+msgid "Unauthorized to update dataset"
+msgstr "Unauthorized to update item"
+
+msgid "The dataset {id} could not be found."
+msgstr "The item {id} could not be found."
+
+msgid "Dataset has been deleted."
+msgstr "Dataset has been deleted."
+
+msgid "Unauthorized to read dataset %s"
+msgstr "Unauthorized to read item %s"
+
+msgid "Datasets affected: %s.\n"
+msgstr "Items affected: %s.\n"
+
+msgid "{actor} added the tag {tag} to the dataset {dataset}"
+msgstr "{actor} added the tag {tag} to the item {item}"
+
+msgid "{actor} updated the dataset {dataset}"
+msgstr "{actor} updated the item {item}"
+
+msgid "{actor} changed the extra {extra} of the dataset {dataset}"
+msgstr "{actor} changed the extra {extra} of the item {item}"
+
+msgid "{actor} updated the resource {resource} in the dataset {dataset}"
+msgstr "{actor} updated the resource {resource} in the item {item}"
+
+msgid "{actor} deleted the dataset {dataset}"
+msgstr "{actor} deleted the item {item}"
+
+msgid "{actor} deleted the extra {extra} from the dataset {dataset}"
+msgstr "{actor} deleted the extra {extra} from the item {item}"
+
+msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
+msgstr "{actor} deleted the resource {resource} from the item {item}"
+
+msgid "{actor} created the dataset {dataset}"
+msgstr "{actor} created the item {item}"
+
+msgid "{actor} added the extra {extra} to the dataset {dataset}"
+msgstr "{actor} added the extra {extra} to the item {item}"
+
+msgid "{actor} added the resource {resource} to the dataset {dataset}"
+msgstr "{actor} added the resource {resource} to the item {item}"
+
+msgid "{actor} removed the tag {tag} from the dataset {dataset}"
+msgstr "{actor} removed the tag {tag} from the item {item}"
+
+msgid "{actor} started following {dataset}"
+msgstr "{actor} started following {item}"
+
+msgid "Created new dataset."
+msgstr "Created new item."
+
+msgid "You cannot add a dataset to this organization"
+msgstr "You cannot add a item to this organization"
+
+msgid "Dataset id already exists"
+msgstr "Dataset id already exists"
+
+msgid "Datasets with no organization can't be private."
+msgstr "Items with no organization can't be private."
+
+msgid "You must be logged in to follow a dataset."
+msgstr "You must be logged in to follow a item."
+
+msgid "User %s not authorized to add dataset to this organization"
+msgstr "User %s not authorized to add item to this organization"
+
+msgid "No dataset id provided, cannot check auth."
+msgstr "No item id provided, cannot check auth."
+
+msgid "User %s not authorized to create resources on dataset %s"
+msgstr "User %s not authorized to create resources on item %s"
+
+msgid "Datasets"
+msgstr "Items"
+
+msgid "Search Datasets"
+msgstr "Search Items"
+
+msgid " <p>Purge deleted datasets forever and irreversibly.</p> "
+msgstr " <p>Purge deleted items forever and irreversibly.</p> "
+
+msgid "Search datasets..."
+msgstr "Search items..."
+
+msgid "Datasets in group: {group}"
+msgstr "Items in group: {group}"
+
+msgid "Remove dataset from this group"
+msgstr "Remove item from this group"
+
+msgid "dataset"
+msgstr "item"
+
+msgid "datasets"
+msgstr "items"
+
+msgid "Edit datasets"
+msgstr "Edit items"
+
+msgid "Add dataset"
+msgstr "Add item"
+
+msgid "Sorry no datasets found for \"{query}\""
+msgstr "Sorry no items found for \"{query}\""
+
+msgid "This organization has no datasets associated to it"
+msgstr "This organization has no items associated to it"
+
+msgid "Add Dataset"
+msgstr "Add Dataset"
+
+msgid "Datasets in organization: {group}"
+msgstr "Items in organization: {group}"
+
+msgid "Create Dataset"
+msgstr "Create Dataset"
+
+msgid "What are datasets?"
+msgstr "What are items?"
+
+msgid "Are you sure you want to delete dataset - {name}?"
+msgstr "Are you sure you want to delete item - {name}?"
+
+msgid "View dataset"
+msgstr "View item"
+
+msgid "Associate this group with this dataset"
+msgstr "Associate this group with this item"
+
+msgid "There are no groups associated with this dataset"
+msgstr "There are no groups associated with this item"
+
+msgid "Update Dataset"
+msgstr "Update Dataset"
+
+msgid "Add data to the dataset"
+msgstr "Add data to the item"
+
+msgid "From the dataset abstract"
+msgstr "From the item abstract"
+
+msgid "Source: <a href=\"%(url)s\">%(dataset)s</a>"
+msgstr "Source: <a href=\"%(url)s\">%(item)s</a>"
+
+msgid "Before you can create a dataset you need to create an organization."
+msgstr "Before you can create a item you need to create an organization."
+
+msgid "There are no organizations to which you can assign this dataset."
+msgstr "There are no organizations to which you can assign this item."
+
+msgid "eg. my-dataset"
+msgstr "eg. my-item"
+
+msgid "Are you sure you want to delete this dataset?"
+msgstr "Are you sure you want to delete this item?"
+
+msgid "http://example.com/dataset.json"
+msgstr "http://example.com/item.json"
+
+msgid "This dataset has no data"
+msgstr "This item has no data"
+
+msgid "Read dataset as of %s"
+msgstr "Read item as of %s"
+
+msgid "Create dataset"
+msgstr "Create item"
+
+msgid "Datasets' Tags"
+msgstr "Items' Tags"
+
+msgid "This dataset satisfies the Open Definition."
+msgstr "This item satisfies the Open Definition."
+
+msgid "This dataset has no description"
+msgstr "This item has no description"
+
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "{number} item found for \"{query}\""
+msgstr[1] "{number} items found for \"{query}\""
+
+msgid "No datasets found for \"{query}\""
+msgstr "No items found for \"{query}\""
+
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "{number} item found"
+msgstr[1] "{number} items found"
+
+msgid "No datasets found"
+msgstr "No items found"
+
+msgid "My Datasets"
+msgstr "My Items"
+
+msgid "You haven't created any datasets."
+msgstr "You haven't created any items."
+
+msgid "Create datasets, groups and other exciting things"
+msgstr "Create items, groups and other exciting things"
+
+msgid "User hasn't created any datasets."
+msgstr "User hasn't created any items."
+

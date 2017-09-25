@@ -13,6 +13,8 @@ li.dataset-item {
     list-style: none;
     margin: 0;
     clear: both;
+    max-height: 400px;
+    overflow: scroll;
 }
 
 .lac-related {
@@ -20,6 +22,15 @@ li.dataset-item {
     float: left;
     width: 50%;
 }
+
+.lac-related:nth-child(odd) .lac-related-content {
+    margin-left: 0;
+}
+
+.lac-related:nth-child(even) .lac-related-content {
+    margin-right: 0;
+}
+
 
 .lac-related-content {
     margin: 4px;

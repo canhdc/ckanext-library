@@ -4,8 +4,9 @@ import json
 
 from pylons import config
 import ckan.plugins as p
-from ckan.lib.navl.dictization_functions import Missing
 from ckan.common import request
+from ckan.lib.navl.dictization_functions import Missing
+from ckan.lib.plugins import DefaultTranslation
 import ckan.lib.helpers as h
 
 import urllib
@@ -179,12 +180,13 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250,
         yield blog_entry
 
 
-class LibrariesPlugin(p.SingletonPlugin):
+class LibrariesPlugin(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.IConfigurer)
     p.implements(p.IValidators)
     p.implements(p.IFacets)
     p.implements(p.IPackageController)
     p.implements(p.ITemplateHelpers)
+    p.implements(p.ITranslation)
 
     def update_config(self, config):
         p.toolkit.add_template_directory(config, 'templates')
@@ -200,14 +202,14 @@ class LibrariesPlugin(p.SingletonPlugin):
     def dataset_facets(self, facets_dict, package_type):
         facets_dict.clear()
         facets_dict['language'] = p.toolkit._('Language')
+
         if package_type == 'item':
             facets_dict['level'] = p.toolkit._('Level')
+            facets_dict['organization'] = p.toolkit._('Organizations')
         else:
             facets_dict['organization'] = p.toolkit._('Organizations')
-            facets_dict['author'] = p.toolkit._('Author')
-            facets_dict['publisher'] = p.toolkit._('Publisher')
-            facets_dict['format'] = p.toolkit._('Format')
-            facets_dict['keywords'] = p.toolkit._('Keywords')
+            facets_dict['type'] = p.toolkit._('Type')
+
         return facets_dict
 
     def organization_facets(self, facets_dict, organization_type,
@@ -218,6 +220,10 @@ class LibrariesPlugin(p.SingletonPlugin):
         # kw = json.loads(data_dict.get('extras_keywords', '{}'))
         # data_dict['keywords'] = kw.get('en', [])
         return data_dict
+
+    def i18n_domain(self):
+        # We need to override core CKAN strings, so we override this.
+        return 'ckan'
 
     def read(self, entity):
         pass
