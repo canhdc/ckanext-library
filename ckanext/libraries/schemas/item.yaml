@@ -8,14 +8,14 @@ form_languages:
 - fr
 
 dataset_fields:
-- field_name: url
+- field_name: date
   label:
-    en: URL
-    fr: URL
+      en: Date
+      fr: Date
 
 - field_name: language
   label:
-    en: Language
+    en: Language of Material
     fr: Langue
   required: true
   display_snippet: select.html
@@ -24,38 +24,15 @@ dataset_fields:
   - label:
       en: English
       fr: Anglais
-    value: en
+    value: English
   - label:
       en: French
       fr: Français
-    value: fr
+    value: French
   - label:
       en: N/A
       fr: N/A
     value: NA
-
-- field_name: identifier
-  label:
-      en: Identifier
-      fr: Identifiant
-  required: true
-
-- field_name: level
-  label:
-      en: Level
-      fr: Portée
-  required: true
-
-- field_name: title
-  label:
-      en: Title
-      fr: Titre
-  required: true
-
-- field_name: date
-  label:
-      en: Date Issued
-      fr: Date de délivrance
 
 - field_name: extent
   form_snippet: fluent_markdown.html
@@ -66,6 +43,34 @@ dataset_fields:
   label:
       en: Extent
       fr: Extent
+
+
+- field_name: url
+  label:
+      en: URL
+      fr: URL
+  required: true
+  display_snippet: null
+
+- field_name: identifier
+  label:
+      en: Identifier
+      fr: Identifiant
+  required: true
+  display_snippet: null
+
+- field_name: level
+  label:
+      en: Level
+      fr: Portée
+  required: true
+  display_snippet: null
+
+- field_name: title
+  label:
+      en: Title
+      fr: Titre
+  required: true
 
 - field_name: notes_translated
   label:
@@ -82,16 +87,17 @@ dataset_fields:
   label:
       en: Access Condition Code
       fr: Code d'état d'accès
+  display_snippet: null
 
 - field_name: rights
   form_snippet: fluent_markdown.html
-  display_snippet: fluent_text.html
+  display_snippet: fluent_markdown.html
   error_snippet: fluent_text.html
   validators: fluent_text
   output_validators: fluent_text_output
   label:
-      en: Rights
-      fr: Rights
+      en: Terms of use
+      fr: Terms of use
 
 - field_name: subjects
   label:

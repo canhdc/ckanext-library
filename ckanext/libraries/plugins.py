@@ -12,79 +12,13 @@ import ckan.lib.helpers as h
 import urllib
 from bs4 import BeautifulSoup
 from datetime import datetime
-import random
+from itertools import chain
 
 
 def _dumps(o):
     if isinstance(o, Missing):
         return o
     return json.dumps(o)
-
-
-def recently_changed_packages(limit, offset):
-    packages = p.toolkit.get_action('recently_changed_packages_activity_list')(
-        data_dict={
-            'offset': offset,
-            'limit': min(limit, len(get_datasets())),
-        }
-    )
-
-    return [package['data'].get('package') or package['data'].get('dataset')
-            for package in packages]
-
-
-def dynamic_content():
-    def _dataset(token, text):
-        return text.replace(token, '[%d](%s)' % (
-            len(get_datasets()),
-            h.url_for(controller='package', action='search'))
-        )
-
-    return {
-        '[datasets#]': _dataset,
-    }
-
-
-# if we ever were to change to a wysiwyg for the intro text
-def render_html_with_dynamic_content(html):
-    changes = dynamic_content()
-    for token in changes:
-        if token in html:
-            html = changes[token](token, html)
-    return html
-
-
-def render_markdown_with_dynamic_content(markdown):
-    # Honestly, there probably will never be any use of plain [dataset#]
-    # as a pure string, so for now I won't provide an escape for the sub
-    changes = dynamic_content()
-    for token in changes:
-        if token in markdown:
-            print 'found %s' % token
-            markdown = changes[token](token, markdown)
-    markdown = h.render_markdown(markdown)
-
-    return markdown
-
-
-# placeholder
-def get_featured_package_ids():
-    # right now there is no metadata allowing to find only the featured items
-    return [
-        'lac-4447345',
-        'lac-4318720',
-        'lac-4318716',
-        'lac-4309188',
-        'lac-4309169'
-    ]
-
-
-def get_random_image():
-    ids = get_featured_package_ids()
-    return p.toolkit.get_action('package_show')(
-        data_dict={
-            'id': random.choice(ids)
-         })
 
 
 def build_canada_libraries_lang_tab():
@@ -108,11 +42,14 @@ def build_canada_libraries_lang_tab():
     return output
 
 
-def get_datasets():
-    datasets = p.toolkit.get_action('package_list')(
-        data_dict={}
-    )
-    return datasets
+def get_item_counts():
+    """Return the # of "Item" typed datasets in our search index."""
+    return p.toolkit.get_action('package_search')(
+        data_dict={
+            'q': 'type:item',
+            'rows': 0
+        }
+    )['count']
 
 
 def get_pages(page_type=None, private=False, order=None):
@@ -178,6 +115,35 @@ def get_recent_short_blog_posts(number=10, exclude=None, length=250,
             blog_entry['truncated'] = False
 
         yield blog_entry
+
+
+def get_relationships(pkg, labels=None):
+    """Return a package's relationships.
+    """
+    # We don't care which side of this relationship we're on, get them
+    # all.
+    rels = chain(
+        pkg['relationships_as_object'],
+        pkg['relationships_as_subject']
+    )
+
+    # Sadly can't be an iterator, adds too much template complexity.
+    results = []
+    for rel in rels:
+        b = json.loads(rel['comment'])
+
+        # Figure out which side of the relationship isn't the current package.
+        if rel['__extras']['object_package_id'] == pkg['id']:
+            focus = b['subject']
+        else:
+            focus = b['object']
+
+        if labels and focus['label'].lower() not in labels:
+            continue
+
+        results.append(focus)
+
+    return results
 
 
 class LibrariesPlugin(p.SingletonPlugin, DefaultTranslation):
@@ -270,13 +236,9 @@ class LibrariesPlugin(p.SingletonPlugin, DefaultTranslation):
     def get_helpers(self):
         return {
             'canada_libraries_recent_short_blog': get_recent_short_blog_posts,
-            'recently_changed_packages': recently_changed_packages,
-            'canada_render_html_with_subs': render_html_with_dynamic_content,
-            'canada_libraries_random_image': get_random_image,
             'lang_list': build_canada_libraries_lang_tab,
-            'canada_render_markdown_with_subs':
-                render_markdown_with_dynamic_content,
-            'datasets': get_datasets,
+            'get_item_counts': get_item_counts,
             'from_json': json.loads,
             'pages': get_pages,
+            'get_relationships': get_relationships
         }

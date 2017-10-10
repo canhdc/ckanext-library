@@ -43,14 +43,12 @@
     </div>
   {% endif %}
 
-  {% if pkg.relationships_as_object or pkg.relationships_as_subject %}
-  <h3>{{ _('Related Datasets') }}</h3>
+  {% set thumbnail = h.thumbnail_url(pkg.id) %}
+  {% if thumbnail and thumbnail != "/image-icon.png" %}
+  <div class="dataset-thumbnail-embedded">
+    <img src="{{ thumbnail }}">
+  </div>
   {% endif %}
-  <ul class="lac-related-list">
-    {{ relationship(pkg.relationships_as_object) }}
-    {{ relationship(pkg.relationships_as_subject) }}
-  </ul>
-  <div style="clear: left;"></div>
 
   {% if pkg.spatial %}
     {% snippet "spatial/snippets/dataset_map.html", extent=pkg['spatial'] %}
@@ -60,30 +58,5 @@
   <span class="insert-comment-thread"></span>
 {% endblock %}
 
-{% macro relationship(rels) %}
-  {% for rel in rels %}
-    {% set b = h.from_json(rel.comment) %}
-    {% if rel.__extras.object_package_id == pkg['id']%}
-      {% set focus = b.subject %}
-    {% else %}
-      {% set focus = b.object %}
-    {% endif %}
-    <li class="lac-related">
-      <div class="lac-related-content">
-        <a href="{{ h.url_for(controller='package', action='read', id=focus.name) }}">
-          <h5>
-            {{ focus.title }}
-          </h5>
-        </a>
-        <div>
-          <em class="muted">{{ focus.label }}</em>
-        </div>
-        {% if focus.description.en %}
-        <p>{{ focus.description.en|truncate }}</p>
-        {% else %}
-        <em class="muted">No description available.</em>
-        {% endif %}
-      </div>
-    </li>
-  {% endfor %}
-{% endmacro %}
+{% block package_resources %}
+{% endblock %}

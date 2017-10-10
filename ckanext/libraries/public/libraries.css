@@ -14,28 +14,16 @@ li.dataset-item {
     margin: 0;
     clear: both;
     max-height: 400px;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .lac-related {
-    display: inline;
-    float: left;
-    width: 50%;
+    border-left: 4px solid green;
 }
-
-.lac-related:nth-child(odd) .lac-related-content {
-    margin-left: 0;
-}
-
-.lac-related:nth-child(even) .lac-related-content {
-    margin-right: 0;
-}
-
 
 .lac-related-content {
     margin: 4px;
     padding: 8px;
-    background-color: #efefef;
     height: 96px;
     overflow: hidden;
 }
@@ -55,4 +43,47 @@ li.dataset-item {
 
 .lac-related-content span {
     margin-bottom: 8px;
+}
+
+.lac-related-content .dataset-list-thumbnail {
+    float: right;
+    clear: right;
+    padding-left: 0;
+    padding-right: 20px;
+    max-height: 100px;
+}
+
+.additional-info {
+    border: none;
+}
+
+.additional-info tbody tr th,
+.additional-info tbody tr td {
+    vertical-align: middle;
+}
+
+.additional-info tbody tr th {
+    font-weight: bold;
+    color: #666;
+    text-align: right;
+    width: 30%;
+    white-space: normal;
+    padding: 8px 20px;
+}
+
+.additional-info .tag {
+    border-radius: 0;
+}
+
+.additional-info .tag-list {
+    padding: 0;
+}
+
+.dataset-details p {
+    margin: 0;
+}
+
+.dataset-thumbnail-embedded {
+    text-align: center;
+    padding-bottom: 25px;
 }

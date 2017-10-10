@@ -121,4 +121,3 @@ msgstr ""
 #: ckanext/libraries/templates/snippets/package_item.html:50
 msgid "This dataset has no description"
 msgstr ""
-

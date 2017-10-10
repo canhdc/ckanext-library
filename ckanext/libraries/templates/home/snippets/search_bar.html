@@ -6,7 +6,7 @@ header - if the header is to be shown or not
 
 {% set placeholder = (_('Search data on ') + app_globals.site_title) %}
 <!-- placeholder = {{ placeholder }} -->
-{% set num = h.datasets()|length %}
+{% set num = h.get_item_counts()  %}
 <!-- num (number of packages)= {{ num }} -->
 {% set header = header if header is defined else True %}
 <!-- header = {{ header }} -->

@@ -1,0 +1,111 @@
+{%- set pkg = pkg_dict -%}
+{%- set exclude_fields = [
+    'id',
+    'title',
+    'name',
+    'notes',
+    'tag_string',
+    'license_id',
+    'owner_org',
+  ] -%}
+
+{% macro relationship(rels) %}
+  {% for rel in rels %}
+    <li class="lac-related">
+      <div class="lac-related-content">
+        <div class="dataset-thumbnail">
+          {% set thumbnail = h.thumbnail_url(rel.id) %}
+          {% if thumbnail and thumbnail != "/image-icon.png" %}
+              <a href="{{ h.url_for(controller='package', action='read', id=rel.name) }}">
+                <img class="dataset-list-thumbnail" src="{{ thumbnail }}" style="max-width: 140px;">
+              </a>
+          {% endif %}
+        </div>
+        <a href="{{ h.url_for(controller='package', action='read', id=rel.name) }}">
+          <h5>
+            {{ rel.title }}
+          </h5>
+        </a>
+        <div>
+          <em class="muted">{{ rel.label }}</em>
+        </div>
+        {% if rel.description.en %}
+        <p>{{ rel.description.en|truncate }}</p>
+        {% else %}
+        <em class="muted">No description available.</em>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+{%- set related_items = h.get_relationships(pkg, labels=['item']) -%}
+{%- if related_items|length -%}
+<h3>{{ _('Related Items') }} ({{ related_items|length }})</h3>
+<ul class="lac-related-list">
+  {{ relationship(related_items) }}
+</ul>
+{% endif %}
+
+<table class="table table-condensed additional-info">
+  <tbody>
+  {%- for field in schema.dataset_fields -%}
+    {%- if field.field_name not in exclude_fields
+        and field.display_snippet is not none -%}
+      <tr>
+        <th scope="row" class="dataset-label">{{
+          h.scheming_language_text(field.label) }}</th>
+        <td class="dataset-details"{%
+          if field.display_property %} property="{{ field.display_property
+          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+          field=field, data=pkg_dict, schema=schema -%}</td>
+      </tr>
+    {%- endif -%}
+  {%- endfor -%}
+  {% if pkg_dict.organization %}
+    {% set org = h.get_organization(pkg_dict.organization.name) %}
+    <tr>
+      <th scope="row" class="dataset-label">
+        {{ _("Contributing organization") }}
+      </th>
+      <td class="dataset-details">
+        {{ _(org.title) }}
+      </td>
+    </tr>
+  {% endif %}
+  {%- set collections = h.get_relationships(pkg, labels=['collection']) -%}
+  {% if collections %}
+  <tr>
+    <th scope="row" class="dataset-label">
+      {{ _('Relationships') }}
+    </th>
+    <td class="dataset-details">
+      <ul class="unstyled">
+      {% if collections %}
+        <li>Collections:
+          <ul>
+          {% for collection in collections %}
+            <li><a href="{{ h.url_for(controller='package', action='read', id=collection.name) }}">
+              <h5>
+                {{ collection.title }}
+              </h5>
+            </a></li>
+          {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
+      </ul>
+    </td>
+  </tr>
+  {% endif %}
+  </tbody>
+</table>
+
+{% if org %}
+  {% set url_field = h.scheming_field_by_name(schema.dataset_fields, 'url') %}
+  {% if url_field %}
+  <div class="read-more">
+    {{ _("View this item at") }} <a href="{{ pkg_dict[url_field.field_name] }}">{{ _(org.title) }}</a>.
+  </div>
+  {% endif %}
+{% endif %}
