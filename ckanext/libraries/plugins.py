@@ -174,7 +174,6 @@ class LibrariesPlugin(p.SingletonPlugin, DefaultTranslation):
             facets_dict['organization'] = p.toolkit._('Organizations')
         else:
             facets_dict['organization'] = p.toolkit._('Organizations')
-            facets_dict['type'] = p.toolkit._('Type')
 
         return facets_dict
 

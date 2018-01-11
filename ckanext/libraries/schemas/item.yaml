@@ -44,7 +44,6 @@ dataset_fields:
       en: Extent
       fr: Extent
 
-
 - field_name: url
   label:
       en: URL
