@@ -1,15 +1,15 @@
 # Translations template for ckanext-libraries.
-# Copyright (C) 2017 ORGANIZATION
+# Copyright (C) 2018 ORGANIZATION
 # This file is distributed under the same license as the ckanext-libraries
 # project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-libraries 0.1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-25 01:55-0400\n"
+"POT-Creation-Date: 2018-02-01 04:00-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,32 +18,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/libraries/plugins.py:214
+#: ckanext/libraries/plugins.py:170
 msgid "Language"
 msgstr ""
 
-#: ckanext/libraries/plugins.py:216
+#: ckanext/libraries/plugins.py:173
 msgid "Level"
 msgstr ""
 
-#: ckanext/libraries/plugins.py:218 ckanext/libraries/templates/header.html:35
+#: ckanext/libraries/plugins.py:174 ckanext/libraries/plugins.py:176
+#: ckanext/libraries/templates/header.html:39
 msgid "Organizations"
-msgstr ""
-
-#: ckanext/libraries/plugins.py:219
-msgid "Type"
 msgstr ""
 
 #: ckanext/libraries/templates/header.html:34
 msgid "Browse"
 msgstr ""
 
-#: ckanext/libraries/templates/header.html:36
-msgid "Groups"
+#: ckanext/libraries/templates/header.html:44
+msgid "About"
 msgstr ""
 
-#: ckanext/libraries/templates/header.html:37
-msgid "About"
+#: ckanext/libraries/templates/header.html:54
+msgid "Search Datasets"
+msgstr ""
+
+#: ckanext/libraries/templates/header.html:55
+#: ckanext/libraries/templates/home/snippets/search_bar.html:40
+msgid "Search"
+msgstr ""
+
+#: ckanext/libraries/templates/group/snippets/info.html:16
+#: ckanext/libraries/templates/package/read.html:36
+#: ckanext/libraries/templates/snippets/organization.html:37
+#: ckanext/libraries/templates/snippets/package_item.html:35
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/libraries/templates/group/snippets/info.html:24
+#: ckanext/libraries/templates/snippets/organization.html:45
+msgid "read more"
+msgstr ""
+
+#: ckanext/libraries/templates/group/snippets/info.html:32
+#: ckanext/libraries/templates/snippets/organization.html:53
+msgid "Datasets"
 msgstr ""
 
 #: ckanext/libraries/templates/home/snippets/blog_list.html:20
@@ -72,27 +91,29 @@ msgstr ""
 msgid "Search data on "
 msgstr ""
 
-#: ckanext/libraries/templates/home/snippets/search_bar.html:24
+#: ckanext/libraries/templates/home/snippets/search_bar.html:23
 msgid "Get started"
 msgstr ""
 
-#: ckanext/libraries/templates/home/snippets/search_bar.html:27
+#: ckanext/libraries/templates/home/snippets/search_bar.html:26
 #, python-format
-msgid " Search over %(num)s dataset "
-msgid_plural " Search over <a href=\"%(datasets_url)s\">%(num)s datasets</a> "
-msgstr[0] ""
-msgstr[1] ""
-
-#: ckanext/libraries/templates/home/snippets/search_bar.html:43
-msgid "Search"
+msgid " Search over <a href=\"%(datasets_url)s\">%(num)s items</a> "
 msgstr ""
 
-#: ckanext/libraries/templates/package/read.html:7
+#: ckanext/libraries/templates/package/read.html:4
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/libraries/templates/package/read.html:5
+msgid "Activity Stream"
+msgstr ""
+
+#: ckanext/libraries/templates/package/read.html:15
 #: ckanext/libraries/templates/snippets/package_item.html:24
 msgid "Private"
 msgstr ""
 
-#: ckanext/libraries/templates/package/read.html:13
+#: ckanext/libraries/templates/package/read.html:21
 #, python-format
 msgid ""
 " You're currently viewing an old version of this dataset. Some resources may "
@@ -100,18 +121,30 @@ msgid ""
 "version, click <a href=\"%(url)s\">here</a>. "
 msgstr ""
 
-#: ckanext/libraries/templates/package/read.html:25
+#: ckanext/libraries/templates/package/read.html:33
 #: ckanext/libraries/templates/snippets/package_item.html:33
 msgid "Draft"
 msgstr ""
 
-#: ckanext/libraries/templates/package/read.html:28
-#: ckanext/libraries/templates/snippets/package_item.html:35
-msgid "Deleted"
+#: ckanext/libraries/templates/package/snippets/additional_info.html:44
+msgid "Related Items"
 msgstr ""
 
-#: ckanext/libraries/templates/package/read.html:39
-msgid "Related Datasets"
+#: ckanext/libraries/templates/package/snippets/additional_info.html:69
+msgid "Contributing organization"
+msgstr ""
+
+#: ckanext/libraries/templates/package/snippets/additional_info.html:80
+msgid "Relationships"
+msgstr ""
+
+#: ckanext/libraries/templates/package/snippets/additional_info.html:108
+#: ckanext/libraries/templates/snippets/package_item.html:56
+msgid "View this item at"
+msgstr ""
+
+#: ckanext/libraries/templates/snippets/organization.html:23
+msgid "Organization"
 msgstr ""
 
 #: ckanext/libraries/templates/snippets/package_item.html:43
@@ -121,3 +154,4 @@ msgstr ""
 #: ckanext/libraries/templates/snippets/package_item.html:50
 msgid "This dataset has no description"
 msgstr ""
+

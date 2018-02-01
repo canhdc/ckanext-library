@@ -39,3 +39,30 @@ msgstr "Vous pouvez également accéder à ces résultats en utilisant API (cf D
 
 msgid "Order by"
 msgstr "Trier par"
+
+msgid "View this item at"
+msgstr "Visualiser l’item à"
+
+msgid "Filter by location"
+msgstr "Filtrer par lieu"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Level"
+msgstr "Niveau"
+
+msgid "Library and Archives Canada"
+msgstr "Bibliothèque et Archives Canada"
+
+msgid "useum of Science and Technolog"
+msgstr "Musée des sciences et de la technologie du Canada"
+
+msgid "Get started"
+msgstr "Pour commencer"
+
+msgid " Search over <a href=\"%(datasets_url)s\">%(num)s items</a> "
+msgstr "Chercher parmi plus de <a href=\"%(datasets_url)s\">%(num)s items</a>"
+
+msgid "Updates"
+msgstr "Mises à jour"

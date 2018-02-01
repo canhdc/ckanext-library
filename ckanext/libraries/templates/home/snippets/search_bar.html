@@ -24,8 +24,6 @@ header - if the header is to be shown or not
             </h3>
             <p class="canhdc_search">
               {% trans count=num %}
-                Search over {{ num }} items
-                {% pluralize %}
                 Search over <a href="{{ datasets_url }}">{{ num }} items</a>
               {% endtrans %}
             </p>
